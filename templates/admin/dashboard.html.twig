@@ -1,1 +1,15 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
+
+
+
+
+{% block main %}
+{# {# twig ne prend pas les 3 = #, seulement 2} #}
+    {% if app.user.isverified == false %}
+    <div class="col-4 border rounded bg-light p-2">
+    <p>Hey, tu n'as toujours pas vérifié ton compte !</p>
+    <a href="#">clique ici pour recevoir un nouveau mail de vérification</a>
+    </div>
+        
+    {% endif %}
+{% endblock %}

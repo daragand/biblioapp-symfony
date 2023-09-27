@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -81,4 +82,23 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('admin');
     }
+
+    // //Route to send email confirmation again
+    // #[Route('/resend-email', name:'app_resend_confirmation')]
+    // public function resendEmail(Email $email):void
+    // {
+    //     //fonction propre à symfony pour récupérer l'utilisateur
+    //     $user= $this->getUser();
+    //     $userEmail= $user->getUserEmail();
+       
+    //     $emailSender = (new TemplatedEmail());
+    //     from(new Address('contact@biblioapp.fr', 'biblioapp'))
+    //     ->to($userEmail)
+    //     ->subject('Please Confirm your Email')
+    //     ->htmlTemplate('registration/confirmation_email.html.twig')
+    
+
+    // $email->sendEmailConfirmation('app_verify_email', $user,$emailSender);
+    
+    // }
 }
