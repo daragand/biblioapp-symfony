@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class BookCrudController extends AbstractCrudController
@@ -46,6 +47,41 @@ class BookCrudController extends AbstractCrudController
             ->hideOnIndex(),
         
                 
+            //TODO A voir lors des query builder
+            // FormField::addPanel('auteur du livre')
+            // ->setIcon('fas fa-pen-nib')
+            // ->setHelp('qui est(sont)  auteur(s) du livre'),
+            // AssociationField::new('authors')
+            //     ->setCrudController(AuthorCrudController::class)
+            // ,
+
+
+            FormField::addPanel('Catégorie du livre')
+            ->setIcon('fas fa-list')
+            ->setHelp('saisissez la catégorie du livre'),
+            AssociationField::new('category','catégorie du livre')
+                ->setCrudController(CategoryCrudController::class),
+
+
+            FormField::addPanel('Format du livre')
+            ->setIcon('fas fa-book-open')
+            ->setHelp('saisissez le format du livre'),
+            AssociationField::new('format','format du livre')
+                ->setCrudController(FormatCrudController::class),
+
+            FormField::addPanel('éditeur du livre')
+            ->setIcon('fas fa-building')
+            ->setHelp('saisissez le éditeur du livre'),
+            AssociationField::new('editor','éditeur du livre')
+                ->setCrudController(EditorCrudController::class),
+
+
+            FormField::addPanel('langue du livre')
+            ->setIcon('fas fa-language')
+            ->setHelp('choisissez la langue du livre'),
+            AssociationField::new('language','éditeur du livre')
+                ->setCrudController(LanguageCrudController::class),
+
 
             FormField::addPanel('année du livre')
             ->setIcon('fas fa-calendar')
@@ -75,10 +111,10 @@ class BookCrudController extends AbstractCrudController
             ->setHelp('saisissez le résumé'),
             TextEditorField::new('description','résumé du livre'),
 
-            FormField::addPanel('résumé du livre')
+            FormField::addPanel('image du livre')
             ->setIcon('fas fa-image')
             ->setHelp('Ajoutez une image de couverture au livre'),
-            ImageField::new('cover','résumé du livre')
+            ImageField::new('cover','couverture du livre')
             ->setBasePath(('uploads/images'))
             ->setUploadDir(('public/uploads/images'))
             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')

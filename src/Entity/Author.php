@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 class Author
@@ -17,18 +18,43 @@ class Author
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min:2,
+        max:50,
+        minMessage:'le prénom doit contenir au moins {{ limit }} caractères attendus',
+        maxMessage:'le prénom doit contenir au moins {{ limit }} caractères attendus'
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min:2,
+        max:50,
+        minMessage:'le prénom doit contenir au moins {{ limit }} caractères attendus',
+        maxMessage:'le prénom doit contenir au moins {{ limit }} caractères attendus'
+    )]
     private ?string $lastname = null;
 
+    #[Assert\Length(
+        min:4,
+        max:4,
+        minMessage:'Saisissez une année avec {{ limit }} chiffres'
+    )]
+    #[Assert\Positive(
+        message:'Saissaissez une année valide'
+    )]
     #[ORM\Column(nullable: true)]
     private ?int $year = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $bio = null;
 
+    
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Url(
+        
+        message:'Saisissez une URL avec https://'
+    )]
     private ?string $link = null;
 
     #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'authors')]
