@@ -3,13 +3,14 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ContactType extends AbstractType
 {
@@ -20,16 +21,13 @@ class ContactType extends AbstractType
        
         $builder
             ->add('name',TextType::class,[
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                'label'=>'Votre nom'
             ])
             ->add('email',EmailType::class,[
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                'label'=>'Votre email'
             ])
             ->add('sujet',ChoiceType::class,[
+                'label'=>'Quel est l\'objet de votre message ?',
                 'choices'=>[
                     // pour avoir un élément non sélectionnable, la clé doit être vide
                     'Choisissez un sujet' => '',
@@ -39,7 +37,23 @@ class ContactType extends AbstractType
                     'Autres' => 'Autres',
                 ],
             ])
-            ->add('message',TextareaType::class)
+            ->add('message',TextareaType::class,[
+                'label'=>'Ecrivez votre message',
+                'attr'=> [
+                'placeholder'=>'Ecrivez votre message'
+                ]
+            ]
+            )
+            // ->add('message',CKEditorType::class,[
+            //     'config' => [
+            //         'uiColor'=> '#fff'
+            //     ],
+            //     'label'=>'Ecrivez votre message',
+            //     'attr'=> [
+            //     'placeholder'=>'Ecrivez votre message'
+            //     ]
+            // ]
+            // )
             // ->add('Envoyer',SubmitType::class)
         ;
     }

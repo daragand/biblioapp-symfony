@@ -29,7 +29,43 @@ class PageController extends AbstractController
     {
         //on récupère la classe de l'élément à savoir le contact
         $form = $this->createForm(ContactType::class);
-        
+
+
+//on réceptionne les données du formulaire avec Request
+
+
+// si le formulaire est soumis et valide alors ...
+
+
+// on récupère les données du formulaire pour les placer dans le mail
+
+
+// on instancie un nouveau mail 
+
+
+// On paramètre le mail 
+
+
+// On envoie le mail
+
+
+// On informe l'utilisateur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         return $this->render('page/contact.html.twig', [
             'contact' => $form,
         ]);

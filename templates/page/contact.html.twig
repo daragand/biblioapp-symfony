@@ -60,7 +60,7 @@
 		{# fin de l'emplacement pour le select #}
 
 
-		<div class="mb-3">
+		 <div class="mb-3">
 			{{ form_label(contact.message) }}
 
 			<div class="input-group">
@@ -70,15 +70,16 @@
 				{{ form_widget(contact.message,
                 {
                     attr:{
-                        class:'form-control'
+                        class:'form-control',
+                        rows: 5
                     }
                     },
-                    ) }}
+                    ) }} 
 				{# on place des classes css sur l'input #}
 
 			</div>
 			{# C'est la fin de la div input group #}
-		</div>
+		</div> 
 
 		<div class="form-check mb-3">
 			<input type="checkbox" class="form-check-input" name="consent" id="form-check">
